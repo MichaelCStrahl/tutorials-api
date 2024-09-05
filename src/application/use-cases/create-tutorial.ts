@@ -1,7 +1,7 @@
 import { ConflictException, Injectable } from '@nestjs/common'
 import { TutorialsRepository } from '@/application/repositories/tutorials-repository'
 import { generateSlug } from '@/utils/generate-slug'
-import { UsersRepository } from '../repositories/users-repository'
+import { UsersRepository } from '@/application/repositories/users-repository'
 
 export interface CreateTutorialUseCaseRequest {
   title: string

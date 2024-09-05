@@ -6,6 +6,8 @@ import { AuthenticateUserUseCase } from '@/application/use-cases/authenticate-us
 import { AuthenticateController } from './controllers/authenticate.controller'
 import { CreateTutorialUseCase } from '@/application/use-cases/create-tutorial'
 import { CreateTutorialController } from './controllers/create-tutorial.controller'
+import { UpdateTutorialUseCase } from '@/application/use-cases/update-tutorial'
+import { UpdateTutorialController } from './controllers/update-tutorial.controller'
 
 @Module({
   imports: [DatabaseModule],
@@ -13,11 +15,13 @@ import { CreateTutorialController } from './controllers/create-tutorial.controll
     CreateUserAccountController,
     AuthenticateController,
     CreateTutorialController,
+    UpdateTutorialController,
   ],
   providers: [
     CreateUserUseCase,
     AuthenticateUserUseCase,
     CreateTutorialUseCase,
+    UpdateTutorialUseCase,
   ],
 })
 export class HttpModule {}

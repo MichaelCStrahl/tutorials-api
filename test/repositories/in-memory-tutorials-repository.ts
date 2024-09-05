@@ -1,5 +1,6 @@
 import { TutorialsRepository } from '@/application/repositories/tutorials-repository'
 import { CreateTutorialUseCaseRequest } from '@/application/use-cases/create-tutorial'
+import { UpdateTutorialUseCaseRequest } from '@/application/use-cases/update-tutorial'
 import { randomUUID } from 'node:crypto'
 
 export class InMemoryTutorialsRepository extends TutorialsRepository {
@@ -35,5 +36,38 @@ export class InMemoryTutorialsRepository extends TutorialsRepository {
     }
 
     return tutorial
+  }
+
+  async findById(id: string) {
+    const tutorial = this.items.find((item) => item.id === id)
+
+    if (!tutorial) {
+      return null
+    }
+
+    return tutorial
+  }
+
+  async update({
+    id,
+    title,
+    slug,
+    content,
+  }: Omit<UpdateTutorialUseCaseRequest, 'authorId'> & { slug: string }) {
+    const index = this.items.findIndex((item) => item.id === id)
+
+    const tutorial = this.items[index]
+
+    const updatedTutorial = {
+      ...tutorial,
+      title: title ?? tutorial.title,
+      slug: slug ?? tutorial.slug,
+      content: content ?? tutorial.content,
+      updatedAt: new Date(),
+    }
+
+    this.items[index] = updatedTutorial
+
+    return updatedTutorial
   }
 }

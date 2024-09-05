@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/infra/prisma/prisma.service'
 import { TutorialsRepository } from '@/application/repositories/tutorials-repository'
 import { CreateTutorialUseCaseRequest } from '@/application/use-cases/create-tutorial'
+import { UpdateTutorialUseCaseRequest } from '@/application/use-cases/update-tutorial'
 
 @Injectable()
 export class PrismaTutorialRepository extends TutorialsRepository {
@@ -23,12 +24,42 @@ export class PrismaTutorialRepository extends TutorialsRepository {
   }
 
   async findBySlug(slug: string) {
-    const user = await this.prisma.tutorials.findUnique({
+    const tutorial = await this.prisma.tutorials.findUnique({
       where: {
         slug,
       },
     })
 
-    return user
+    return tutorial
+  }
+
+  async findById(id: string) {
+    const tutorial = await this.prisma.tutorials.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return tutorial
+  }
+
+  async update({
+    id,
+    title,
+    slug,
+    content,
+  }: Omit<UpdateTutorialUseCaseRequest, 'authorId'> & {
+    slug: string
+  }) {
+    const tutorial = await this.prisma.tutorials.update({
+      where: { id },
+      data: {
+        title,
+        slug,
+        content,
+      },
+    })
+
+    return tutorial
   }
 }
