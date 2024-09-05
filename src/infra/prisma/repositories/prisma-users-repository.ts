@@ -28,4 +28,14 @@ export class PrismaUsersRepository extends UsersRepository {
 
     return user
   }
+
+  async findById(id: string) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return user
+  }
 }

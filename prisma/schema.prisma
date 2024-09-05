@@ -25,10 +25,11 @@ model Users {
 model Tutorials {
   id        String   @id @default(uuid())
   title     String
+  slug      String   @unique
   content   String
-  usersId   String   @map("users_id")
+  authorId  String   @map("users_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  author Users @relation(fields: [usersId], references: [id])
+  author Users @relation(fields: [authorId], references: [id])
 }
