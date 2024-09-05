@@ -62,4 +62,8 @@ export class PrismaTutorialRepository extends TutorialsRepository {
 
     return tutorial
   }
+
+  async delete(id: string) {
+    await this.prisma.tutorials.delete({ where: { id } })
+  }
 }
