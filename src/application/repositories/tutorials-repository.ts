@@ -10,6 +10,7 @@ export abstract class TutorialsRepository {
 
   abstract findBySlug(slug: string): Promise<Tutorial | null>
   abstract findById(id: string): Promise<Tutorial | null>
+  abstract findMany(): Promise<Tutorial[] | []>
   abstract delete(id: string): Promise<void>
   abstract update(
     data: Omit<UpdateTutorialUseCaseRequest, 'authorId'> & { slug: string },

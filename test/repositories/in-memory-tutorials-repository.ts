@@ -48,6 +48,10 @@ export class InMemoryTutorialsRepository extends TutorialsRepository {
     return tutorial
   }
 
+  async findMany() {
+    return this.items
+  }
+
   async update({
     id,
     title,

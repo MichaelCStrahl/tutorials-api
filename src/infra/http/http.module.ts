@@ -10,6 +10,8 @@ import { UpdateTutorialUseCase } from '@/application/use-cases/update-tutorial'
 import { UpdateTutorialController } from '@/infra/http/controllers/update-tutorial.controller'
 import { DeleteTutorialUseCase } from '@/application/use-cases/delete-tutorial'
 import { DeleteTutorialController } from '@/infra/http/controllers/delete-tutorial.controller'
+import { FetchTutorialsController } from '@/infra/http/controllers/fetch-tutorials.controller'
+import { FetchTutorialsUseCase } from '@/application/use-cases/fetch-tutorials'
 
 @Module({
   imports: [DatabaseModule],
@@ -19,6 +21,7 @@ import { DeleteTutorialController } from '@/infra/http/controllers/delete-tutori
     CreateTutorialController,
     UpdateTutorialController,
     DeleteTutorialController,
+    FetchTutorialsController,
   ],
   providers: [
     CreateUserUseCase,
@@ -26,6 +29,7 @@ import { DeleteTutorialController } from '@/infra/http/controllers/delete-tutori
     CreateTutorialUseCase,
     UpdateTutorialUseCase,
     DeleteTutorialUseCase,
+    FetchTutorialsUseCase,
   ],
 })
 export class HttpModule {}

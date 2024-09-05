@@ -43,6 +43,12 @@ export class PrismaTutorialRepository extends TutorialsRepository {
     return tutorial
   }
 
+  async findMany() {
+    const tutorials = await this.prisma.tutorials.findMany()
+
+    return tutorials
+  }
+
   async update({
     id,
     title,
